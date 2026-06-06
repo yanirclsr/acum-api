@@ -128,6 +128,17 @@ The client has zero Express dependency — drop it into any Node.js project or M
 
 ---
 
+## Languages
+
+- English: [README.md](README.md)
+- עברית: [README.he.md](README.he.md)
+
+To regenerate the Hebrew translation after editing `README.md`:
+```bash
+npm run translate
+```
+Requires `GEMINI_API_KEY` in `.env`.
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).

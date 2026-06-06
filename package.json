@@ -9,7 +9,8 @@
     "build": "npm run build --workspaces",
     "test": "npm run test --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
-    "dev": "npm run dev --workspace=packages/api"
+    "dev": "npm run dev --workspace=packages/api",
+    "translate": "node scripts/translate-readme.mjs"
   },
   "devDependencies": {
     "typescript": "5.4.5",
