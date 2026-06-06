@@ -15,10 +15,11 @@ const PORT = process.env.PORT ?? 3000;
 
 app.use(express.json());
 
-// Security headers
+// Security + attribution headers
 app.use((_req, res, next) => {
   res.setHeader("X-Content-Type-Options", "nosniff");
   res.setHeader("X-Frame-Options", "DENY");
+  res.setHeader("X-Unofficial-Notice", "Not affiliated with ACUM. Wraps public unauthenticated endpoints only.");
   next();
 });
 

@@ -1,8 +1,22 @@
 # acum-api
 
-Open source REST API wrapping the [ACUM](https://www.acum.org.il/) (אקו"ם) public music rights search database.
+> ⚠️ **UNOFFICIAL — Not affiliated with or endorsed by ACUM (אקו"ם) in any way.**
+> This is an independent open source project. It reverse-engineers and wraps the
+> unauthenticated public search endpoints at [nocs.acum.org.il](https://nocs.acum.org.il/acumsitesearchdb/).
+> All data belongs to ACUM. Use responsibly.
 
-> **Disclaimer:** This project is not affiliated with, endorsed by, or sponsored by ACUM. It wraps only unauthenticated public endpoints available at [nocs.acum.org.il](https://nocs.acum.org.il/acumsitesearchdb/). Use responsibly and respectfully — rate limiting is built in.
+---
+
+## Disclaimer
+
+This project has **no official relationship with ACUM (אקו"ם)**. It is not:
+- Authorized, approved, or endorsed by ACUM
+- An official API or SDK provided by ACUM
+- Affiliated with any ACUM product or service
+
+It works by calling the same unauthenticated HTTP endpoints that power ACUM's own public search website. No private APIs, no authentication bypass, no scraped data — only what the website itself serves to any visitor.
+
+If you use this in production, make sure your use case respects ACUM's [terms of service](https://www.acum.org.il/).
 
 ---
 

@@ -3,9 +3,11 @@ info:
   title: ACUM Search API
   version: 0.1.0
   description: |
-    Open source REST wrapper around the ACUM (אקו"ם) public music rights search database.
+    Unofficial open source REST wrapper around the ACUM (אקו"ם) public music rights search database.
 
-    **Not affiliated with or endorsed by ACUM.** Wraps only unauthenticated public endpoints.
+    > **⚠️ UNOFFICIAL — Not affiliated with, endorsed by, or authorized by ACUM (אקו"ם).**
+    > This API wraps unauthenticated public endpoints from ACUM's own search website.
+    > All music rights data belongs to ACUM. Use responsibly and in accordance with ACUM's terms of service.
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
