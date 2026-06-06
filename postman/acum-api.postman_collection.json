@@ -1,0 +1,104 @@
+{
+  "info": {
+    "name": "ACUM API",
+    "description": "Open source wrapper for the ACUM music rights search database. Not affiliated with ACUM.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/health"
+      }
+    },
+    {
+      "name": "Search works by title (Hebrew)",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/search?q=לילה&by=title&method=partial",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "search"],
+          "query": [
+            { "key": "q", "value": "לילה" },
+            { "key": "by", "value": "title" },
+            { "key": "method", "value": "partial" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Search works by composer",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/search?q=שלמה+ארצי&by=composer",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "search"],
+          "query": [
+            { "key": "q", "value": "שלמה ארצי" },
+            { "key": "by", "value": "composer" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Search artists",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/search?q=שלמה+ארצי&type=artists",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "search"],
+          "query": [
+            { "key": "q", "value": "שלמה ארצי" },
+            { "key": "type", "value": "artists" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get work detail",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/works/1579291"
+      }
+    },
+    {
+      "name": "Get version detail",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/works/1579291/versions/1579291001"
+      }
+    },
+    {
+      "name": "Search artists by name",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/artists/search?q=ארצי",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "artists", "search"],
+          "query": [
+            { "key": "q", "value": "ארצי" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get artist works",
+      "request": {
+        "method": "GET",
+        "url": "{{baseUrl}}/api/artists/I-000151826-7/works"
+      }
+    }
+  ]
+}
