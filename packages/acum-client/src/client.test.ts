@@ -1,8 +1,8 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
-import { createHttpClient, acumGet, AcumError } from "./client.js";
-import { ACUM_BASE_URL } from "./params.js";
+import { createHttpClient, acumGet, AcumError } from "./client";
+import { ACUM_BASE_URL } from "./params";
 
 describe("acumGet", () => {
   let http: ReturnType<typeof createHttpClient>;

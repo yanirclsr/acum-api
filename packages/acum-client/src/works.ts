@@ -1,7 +1,7 @@
 import type { AxiosInstance } from "axios";
-import { acumGet } from "./client.js";
-import { normalizeWorkBean } from "./normalize.js";
-import type { WorkDetail } from "./types.js";
+import { acumGet } from "./client";
+import { normalizeWorkBean } from "./normalize";
+import type { WorkDetail } from "./types";
 
 interface RawGetWorkInfoResponse {
   work: Record<string, unknown>;

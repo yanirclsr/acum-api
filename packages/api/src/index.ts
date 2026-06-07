@@ -4,11 +4,11 @@ import path from "path";
 import fs from "fs";
 import yaml from "js-yaml";
 import swaggerUi from "swagger-ui-express";
-import { apiRateLimit } from "./middleware/rateLimit.js";
-import { errorHandler } from "./middleware/errors.js";
-import searchRouter from "./routes/search.js";
-import worksRouter from "./routes/works.js";
-import artistsRouter from "./routes/artists.js";
+import { apiRateLimit } from "./middleware/rateLimit";
+import { errorHandler } from "./middleware/errors";
+import searchRouter from "./routes/search";
+import worksRouter from "./routes/works";
+import artistsRouter from "./routes/artists";
 
 const app = express();
 const PORT = process.env.PORT ?? 3000;

@@ -8,8 +8,8 @@ import type {
   WorkCategory,
   CreatorRole,
   ProtectionStatus,
-} from "./types.js";
-import { POOL_MAP, WORK_CATEGORY_MAP, PROFESSION_MAP, ACUM_BASE_URL } from "./params.js";
+} from "./types";
+import { POOL_MAP, WORK_CATEGORY_MAP, PROFESSION_MAP, ACUM_BASE_URL } from "./params";
 
 function toPool(raw: string | undefined): Pool {
   return POOL_MAP[raw ?? ""] ?? "local";

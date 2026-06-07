@@ -1,14 +1,14 @@
 import type { AxiosInstance } from "axios";
-import { acumGet, AcumError } from "./client.js";
-import { normalizeWorkBean, normalizeArtistBean } from "./normalize.js";
-import { PRIMARY_SEARCH_KEY, SECONDARY_SEARCH_KEY } from "./params.js";
+import { acumGet, AcumError } from "./client";
+import { normalizeWorkBean, normalizeArtistBean } from "./normalize";
+import { PRIMARY_SEARCH_KEY, SECONDARY_SEARCH_KEY } from "./params";
 import type {
   SearchWorksParams,
   SearchResult,
   ArtistSearchResult,
   Work,
   Artist,
-} from "./types.js";
+} from "./types";
 
 interface RawResultTypeInfo {
   resultTypeKey: string;

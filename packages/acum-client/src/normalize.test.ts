@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { normalizeWorkBean, normalizeArtistBean } from "./normalize.js";
+import { normalizeWorkBean, normalizeArtistBean } from "./normalize";
 
 const sampleWorkBean = {
   fullWorkId: "1579291",

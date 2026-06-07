@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import request from "supertest";
 import express from "express";
-import { errorHandler } from "../middleware/errors.js";
+import { errorHandler } from "../middleware/errors";
 
 vi.mock("@acum-api/acum-client", () => ({
   createHttpClient: vi.fn(() => ({})),
@@ -10,7 +10,7 @@ vi.mock("@acum-api/acum-client", () => ({
 }));
 
 import * as client from "@acum-api/acum-client";
-import searchRouter from "./search.js";
+import searchRouter from "./search";
 
 function buildApp() {
   const app = express();

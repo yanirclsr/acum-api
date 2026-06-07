@@ -1,0 +1,14 @@
+name: acum-mcp
+description: Search ACUM (Israel music rights society) database — works, artists, composers, performers. Unofficial, not affiliated with ACUM.
+license: MIT
+homepage: https://github.com/yanirclsr/acum-api
+
+startCommand:
+  type: stdio
+  command: node
+  args:
+    - packages/mcp/dist/index.js
+  env:
+    ACUM_BASE_URL:
+      description: Override ACUM base URL (optional, for testing against a proxy)
+      required: false

@@ -1,5 +1,5 @@
-export { createHttpClient, AcumError } from "./client.js";
-export { searchWorks, searchArtists } from "./search.js";
-export { getWork, getVersion } from "./works.js";
-export { getCreatorWorks } from "./artists.js";
-export * from "./types.js";
+export { createHttpClient, AcumError } from "./client";
+export { searchWorks, searchArtists } from "./search";
+export { getWork, getVersion } from "./works";
+export { getCreatorWorks } from "./artists";
+export * from "./types";

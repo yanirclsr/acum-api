@@ -1,7 +1,7 @@
 import type { AxiosInstance } from "axios";
-import { acumGet, AcumError } from "./client.js";
-import { normalizeWorkBean } from "./normalize.js";
-import type { Work, SearchCreatorWorksParams, SearchResult } from "./types.js";
+import { acumGet, AcumError } from "./client";
+import { normalizeWorkBean } from "./normalize";
+import type { Work, SearchCreatorWorksParams, SearchResult } from "./types";
 
 interface RawSearchDBResponse {
   resultTypeInfos: Array<{

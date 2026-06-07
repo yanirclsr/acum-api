@@ -1,4 +1,4 @@
-import type { SearchByType, ArtistProfession } from "./types.js";
+import type { SearchByType, ArtistProfession } from "./types";
 
 export const PRIMARY_SEARCH_KEY: Record<SearchByType, string> = {
   title: "1",

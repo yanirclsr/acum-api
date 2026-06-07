@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
-import { ACUM_BASE_URL } from "./params.js";
-import type { AcumClientConfig } from "./types.js";
+import { ACUM_BASE_URL } from "./params";
+import type { AcumClientConfig } from "./types";
 
 export interface AcumResponse<T = unknown> {
   errorCode: number;
