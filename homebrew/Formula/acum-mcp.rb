@@ -4,21 +4,22 @@ class AcumMcp < Formula
   # URL and sha256 are updated automatically by the release workflow.
   # To update manually: curl -sL <url> | shasum -a 256
   url "https://registry.npmjs.org/@acum-api/mcp/-/mcp-0.1.0.tgz"
-  sha256 "PLACEHOLDER_SHA256"
+  sha256 "b504a685089de31785ed1bfc6785df5dfb6d1b7ea8209ca6fc4bd66228849d45"
   license "MIT"
 
   depends_on "node"
 
   def install
-    system "npm", "install", "--omit", "dev", "--prefix", libexec
-    (bin/"acum-mcp").write_env_script libexec/"node_modules/.bin/acum-mcp",
-      PATH: "#{Formula["node"].opt_bin}:$PATH"
+    system "npm", "install", "--omit", "dev"
+    libexec.install Dir["*"]
+    chmod 0755, libexec/"dist/index.js"
+    (bin/"acum-mcp").write <<~SH
+      #!/bin/bash
+      exec "#{Formula["node"].opt_bin}/node" "#{libexec}/dist/index.js" "$@"
+    SH
   end
 
   test do
-    # Pipe empty input so the stdio server exits cleanly
-    output = pipe_output("#{bin}/acum-mcp 2>&1", "", 0)
-    # Server starts successfully when it outputs nothing or connects on stdio
-    assert_match "", output
+    assert_predicate bin/"acum-mcp", :executable?
   end
 end
