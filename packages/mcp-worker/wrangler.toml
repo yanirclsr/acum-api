@@ -1,0 +1,11 @@
+name = "acum-mcp"
+main = "src/index.ts"
+compatibility_date = "2024-12-18"
+compatibility_flags = []
+
+[vars]
+# ACUM_BASE_URL = "https://custom-proxy.example.com/acumsitesearchdb"
+
+
+[observability]
+enabled = true

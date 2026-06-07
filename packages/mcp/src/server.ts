@@ -15,7 +15,7 @@ const TOOLS = [
   {
     name: "search_works",
     description:
-      "Search ACUM's database for musical works by title, composer, performer, album, catalog, or work number. Returns paginated results with Hebrew/English titles, composers, authors, and performers.",
+      "Search ACUM (אקו״ם / אקום) database for musical works by title, composer, performer, album, catalog, or work number. Returns paginated results with Hebrew/English titles, composers, authors, and performers.",
     inputSchema: {
       type: "object",
       properties: {
@@ -44,7 +44,7 @@ const TOOLS = [
   {
     name: "get_work",
     description:
-      "Get full details for a specific musical work by its ACUM work ID, including all versions, creators, ISWC, and registration dates.",
+      "Get full details for a specific musical work by its ACUM (אקו״ם) work ID, including all versions, creators, ISWC, and registration dates.",
     inputSchema: {
       type: "object",
       properties: {
@@ -71,7 +71,7 @@ const TOOLS = [
   {
     name: "search_artists",
     description:
-      "Search for artists (composers, authors, performers) in the ACUM database by name.",
+      "Search for artists (composers, authors, performers) in the ACUM (אקו״ם / אקום) database by name.",
     inputSchema: {
       type: "object",
       properties: {
@@ -90,7 +90,7 @@ const TOOLS = [
   {
     name: "get_artist_works",
     description:
-      "Get all works registered to a specific artist/creator by their ACUM IP base number.",
+      "Get all works registered to a specific artist/creator by their ACUM (אקו״ם) IP base number.",
     inputSchema: {
       type: "object",
       properties: {
@@ -122,7 +122,7 @@ export function createAcumMcpServer(config?: AcumClientConfig) {
   const http = createHttpClient(config);
 
   const server = new Server(
-    { name: "acum-mcp", version: "0.1.0" },
+    { name: "ACUM (אקו״ם)", version: "0.1.0" },
     { capabilities: { tools: {} } }
   );
 

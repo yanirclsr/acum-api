@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Background -->
+  <rect width="512" height="512" rx="96" fill="#1a1a2e"/>
+
+  <!-- Outer ring -->
+  <circle cx="256" cy="256" r="200" fill="none" stroke="#c9a84c" stroke-width="6" opacity="0.3"/>
+
+  <!-- Music note -->
+  <g fill="#c9a84c">
+    <!-- Note head 1 -->
+    <ellipse cx="192" cy="310" rx="38" ry="28" transform="rotate(-15 192 310)"/>
+    <!-- Note stem 1 -->
+    <rect x="224" y="170" width="10" height="145" rx="5"/>
+    <!-- Note head 2 -->
+    <ellipse cx="312" cy="290" rx="38" ry="28" transform="rotate(-15 312 290)"/>
+    <!-- Note stem 2 -->
+    <rect x="344" y="150" width="10" height="145" rx="5"/>
+    <!-- Beam connecting stems -->
+    <rect x="224" y="170" width="130" height="18" rx="5"/>
+  </g>
+
+  <!-- Circuit dots -->
+  <g fill="#c9a84c" opacity="0.5">
+    <circle cx="130" cy="180" r="6"/>
+    <circle cx="110" cy="210" r="4"/>
+    <circle cx="382" cy="180" r="6"/>
+    <circle cx="402" cy="210" r="4"/>
+    <line x1="130" y1="180" x2="110" y2="210" stroke="#c9a84c" stroke-width="2" opacity="0.5"/>
+    <line x1="382" y1="180" x2="402" y2="210" stroke="#c9a84c" stroke-width="2" opacity="0.5"/>
+  </g>
+
+  <!-- Bottom label -->
+  <text x="256" y="430" text-anchor="middle" font-family="monospace" font-size="36" font-weight="bold" fill="#c9a84c" letter-spacing="4">ACUM</text>
+  <text x="256" y="465" text-anchor="middle" font-family="monospace" font-size="20" fill="#c9a84c" opacity="0.6" letter-spacing="6">MCP</text>
+</svg>
