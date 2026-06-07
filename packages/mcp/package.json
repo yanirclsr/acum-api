@@ -1,6 +1,6 @@
 {
   "name": "@acum-api/mcp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "MCP server for ACUM (Israel music rights society) database search",
   "main": "dist/index.js",
   "bin": {

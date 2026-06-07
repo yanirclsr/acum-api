@@ -1,6 +1,6 @@
 {
   "name": "@acum-api/acum-client",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Typed client for the ACUM music rights search database",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
