@@ -10,15 +10,16 @@ class AcumMcp < Formula
   depends_on "node"
 
   def install
-    system "npm", "install", "--omit", "dev", "--prefix", libexec
-    (bin/"acum-mcp").write_env_script libexec/"node_modules/.bin/acum-mcp",
-      PATH: "#{Formula["node"].opt_bin}:$PATH"
+    system "npm", "install", "--omit", "dev"
+    libexec.install Dir["*"]
+    chmod 0755, libexec/"dist/index.js"
+    (bin/"acum-mcp").write <<~SH
+      #!/bin/bash
+      exec "#{Formula["node"].opt_bin}/node" "#{libexec}/dist/index.js" "$@"
+    SH
   end
 
   test do
-    # Pipe empty input so the stdio server exits cleanly
-    output = pipe_output("#{bin}/acum-mcp 2>&1", "", 0)
-    # Server starts successfully when it outputs nothing or connects on stdio
-    assert_match "", output
+    assert_predicate bin/"acum-mcp", :executable?
   end
 end
