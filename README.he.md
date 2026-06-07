@@ -1,44 +1,76 @@
 # acum-api
 
-> ⚠️ **לא רשמי — אינו קשור או מאושר על ידי ACUM (אקו"ם) בשום צורה שהיא.**
-> זהו פרויקט קוד פתוח עצמאי. הוא מבצע הנדסה הפוכה ועוטף את נקודות הקצה הציבוריות הלא מאומתות לחיפוש בכתובת [nocs.acum.org.il](https://nocs.acum.org.il/acumsitesearchdb/).
-> כל הנתונים שייכים ל-ACUM. השתמש באחריות.
+> ⚠️ **לא רשמי — אינו משויך או מאושר על ידי אקו"ם בשום צורה שהיא.**
+> זהו פרויקט קוד פתוח עצמאי. הוא עושה הנדסה הפוכה ועוטף את נקודות הקצה הציבוריות הלא מאומתות לחיפוש ב- [nocs.acum.org.il](https://nocs.acum.org.il/acumsitesearchdb/).
+> כל הנתונים שייכים לאקו"ם. השתמשו באחריות.
 
 ---
 
-## כתב ויתור
+## הצהרת אחריות
 
-לפרויקט זה **אין קשר רשמי עם ACUM (אקו"ם)**. הוא אינו:
-- מורשה, מאושר או נתמך על ידי ACUM
-- API או SDK רשמי המסופק על ידי ACUM
-- קשור למוצר או שירות כלשהו של ACUM
+לפרויקט זה **אין קשר רשמי עם אקו"ם**. הוא אינו:
+- מורשה, מאושר או נתמך על ידי אקו"ם
+- API או SDK רשמי המסופק על ידי אקו"ם
+- משויך למוצר או שירות כלשהו של אקו"ם
 
-הוא פועל באמצעות קריאה לאותן נקודות קצה (HTTP endpoints) ציבוריות ולא מאומתות המפעילות את אתר החיפוש הציבורי של ACUM. אין ממשקי API פרטיים, אין עקיפת אימות, אין נתונים שנצברו ("scraped") – רק מה שהאתר עצמו משרת לכל מבקר.
+הוא פועל על ידי קריאה לאותן נקודות קצה HTTP לא מאומתות המפעילות את אתר החיפוש הציבורי של אקו"ם. אין APIs פרטיים, אין עקיפת אימות, אין נתונים מגורדים – רק מה שהאתר עצמו מגיש לכל מבקר.
 
-אם אתה משתמש בזה בסביבת ייצור (production), ודא שמקרה השימוש שלך עומד בתנאי השימוש של ACUM ([terms of service](https://www.acum.org.il/)).
+אם אתם משתמשים בזה בפרודקשן, ודאו כי מקרה השימוש שלכם מכבד את [תנאי השירות](https://www.acum.org.il/) של אקו"ם.
 
 ---
 
 ## מה זה?
 
-ACUM היא אגודת זכויות המוזיקה של ישראל, המנהלת זכויות עבור למעלה מ-1.7 מיליון יצירות. למאגר החיפוש הציבורי שלהם אין API מתועד. רפוזיטורי זה מספק:
+אקו"ם היא אגודת זכויות המוזיקה של ישראל, המנהלת זכויות עבור למעלה מ-1.7 מיליון יצירות. למאגר החיפוש הציבורי שלהם אין API מתועד. ריפו זה מספק:
 
-- **`packages/acum-client`** — קליינט TypeScript מטיפוסים מוגדרים (typed) ללא תלות כלשהי (ללא Express) שתוכלו לייבא לכל פרויקט Node.js או MCP server
-- **`packages/api`** — Express REST API מוכן לייצור (production-ready) העוטף את הקליינט
+- **`packages/acum-client`** — קליינט TypeScript מטיפוסים (typed TypeScript client) ללא תלות (Express-free) שניתן לייבא לכל פרויקט Node.js או שרת MCP
+- **`packages/api`** — REST API מוכן לפרודקשן מבוסס Express שעוטף את הקליינט
+- **`packages/mcp`** — שרת MCP עבור Claude Desktop ועוזרי AI אחרים התואמים ל-MCP
 
 ---
 
-## התחלה מהירה
+## התקנה
 
-### Docker (מומלץ)
+### שרת MCP (Claude Desktop / עוזרי AI)
+
+**Homebrew (מומלץ)**
+
+```bash
+brew tap yanirclsr/tap
+brew install acum-mcp
+```
+
+**npm**
+
+```bash
+npm install -g @acum-api/mcp
+```
+
+לאחר מכן הוסיפו לקובץ `claude_desktop_config.json` של Claude Desktop:
+
+```json
+{
+  "mcpServers": {
+    "acum": {
+      "command": "acum-mcp"
+    }
+  }
+}
+```
+
+הפעילו מחדש את Claude Desktop. כעת תוכלו לבקש מקלוד לחפש באקו"ם ישירות.
+
+### REST API
+
+**Docker (מומלץ)**
 
 ```bash
 docker compose up
 ```
 
-ה-API זמין בכתובת `http://localhost:3000`. התיעוד בכתובת `http://localhost:3000/docs`.
+ה-API זמין ב-`http://localhost:3000`. התיעוד זמין ב-`http://localhost:3000/docs`.
 
-### פיתוח מקומי
+**פיתוח מקומי**
 
 ```bash
 node --version  # requires Node 20+
@@ -49,9 +81,23 @@ npm run dev --workspace=packages/api
 
 ---
 
-## תיעוד API
+## כלי MCP
 
-תיעוד אינטראקטיבי מלא בכתובת `/docs` (Swagger UI).
+שרת ה-MCP חושף 5 כלים:
+
+| Tool | Description |
+|------|-------------|
+| `search_works` | חיפוש לפי כותרת, מלחין, מבצע, אלבום, או מספר יצירה |
+| `get_work` | פרטי יצירה מלאים + כל הגרסאות |
+| `get_version` | פרטים עבור גרסה ספציפית |
+| `search_artists` | מציאת מלחינים/יוצרים לפי שם |
+| `get_artist_works` | כל היצירות הרשומות ליוצר |
+
+---
+
+## תיעוד ה-REST API
+
+תיעוד אינטראקטיבי מלא ב-`/docs` (Swagger UI).
 
 ### חיפוש יצירות
 
@@ -59,9 +105,9 @@ npm run dev --workspace=packages/api
 GET /api/search?q=לילה&by=title&method=partial&page=1&limit=10
 ```
 
-| פרמטר | ערכים | ברירת מחדל |
+| Param | Values | Default |
 |-------|--------|---------|
-| `q` | כל טקסט | חובה |
+| `q` | כל טקסט | נדרש |
 | `by` | `title`, `composer`, `performer`, `album`, `catalog`, `number` | `title` |
 | `artist` | פילטר משני אופציונלי למבצע | — |
 | `method` | `partial`, `exact` | `partial` |
@@ -70,7 +116,7 @@ GET /api/search?q=לילה&by=title&method=partial&page=1&limit=10
 | `limit` | 1–30 | `10` |
 | `type` | `works`, `artists` | `works` |
 
-### קבל פרטי יצירה
+### קבלת פרטי יצירה
 
 ```
 GET /api/works/1579291
@@ -99,11 +145,15 @@ GET /health
 
 ## הפעלה ב-Postman
 
-ייבא את `postman/acum-api.postman_collection.json` מרפוזיטורי זה.
+ייבאו את `postman/acum-api.postman_collection.json` מריפו זה.
 
 ---
 
 ## שימוש ישיר בחבילת הקליינט
+
+```bash
+npm install @acum-api/acum-client
+```
 
 ```ts
 import { createHttpClient, searchWorks, getWork } from "@acum-api/acum-client";
@@ -117,13 +167,13 @@ const work = await getWork(http, "1579291");
 console.log(work.iswc, work.versions.length);
 ```
 
-לקליינט אין תלות ב-Express — תוכל לשלב אותו בכל פרויקט Node.js או MCP server.
+ללא תלות ב-Express — שלבו אותו בכל פרויקט Node.js או שרת MCP.
 
 ---
 
-## הגבלת קצב (Rate limiting)
+## הגבלת קצב בקשות (Rate limiting)
 
-60 requests/minute/IP. אנא כבד את שרתי ACUM.
+60 בקשות/דקה/IP. כבדו את שרתי אקו"ם.
 
 ---
 
@@ -132,7 +182,7 @@ console.log(work.iswc, work.versions.length);
 - English: [README.md](README.md)
 - עברית: [README.he.md](README.he.md)
 
-כדי ליצור מחדש את התרגום לעברית לאחר עריכת `README.md`:
+כדי ליצור מחדש את התרגום העברי לאחר עריכת `README.md`:
 ```bash
 npm run translate
 ```
@@ -140,8 +190,8 @@ npm run translate
 
 ## תרומה
 
-ראה [CONTRIBUTING.md](CONTRIBUTING.md).
+ראו [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## רישיון
 
-MIT — ראה [LICENSE](LICENSE).
+MIT — ראו [LICENSE](LICENSE).

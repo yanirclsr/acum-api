@@ -26,12 +26,44 @@ ACUM is Israel's music rights society, managing rights for 1.7M+ works. Their pu
 
 - **`packages/acum-client`** — a zero-dependency (Express-free) typed TypeScript client you can import in any Node.js project or MCP server
 - **`packages/api`** — a production-ready Express REST API wrapping the client
+- **`packages/mcp`** — an MCP server for Claude Desktop and other MCP-compatible AI assistants
 
 ---
 
-## Quick Start
+## Install
 
-### Docker (recommended)
+### MCP server (Claude Desktop / AI assistants)
+
+**Homebrew (recommended)**
+
+```bash
+brew tap yanirclsr/tap
+brew install acum-mcp
+```
+
+**npm**
+
+```bash
+npm install -g @acum-api/mcp
+```
+
+Then add to your Claude Desktop `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "acum": {
+      "command": "acum-mcp"
+    }
+  }
+}
+```
+
+Restart Claude Desktop. You can now ask Claude to search ACUM directly.
+
+### REST API
+
+**Docker (recommended)**
 
 ```bash
 docker compose up
@@ -39,7 +71,7 @@ docker compose up
 
 API available at `http://localhost:3000`. Docs at `http://localhost:3000/docs`.
 
-### Local development
+**Local development**
 
 ```bash
 node --version  # requires Node 20+
@@ -50,7 +82,21 @@ npm run dev --workspace=packages/api
 
 ---
 
-## API Reference
+## MCP Tools
+
+The MCP server exposes 5 tools:
+
+| Tool | Description |
+|------|-------------|
+| `search_works` | Search by title, composer, performer, album, or work number |
+| `get_work` | Full work detail + all versions |
+| `get_version` | Details for a specific version |
+| `search_artists` | Find composers/authors by name |
+| `get_artist_works` | All works registered to a creator |
+
+---
+
+## REST API Reference
 
 Full interactive docs at `/docs` (Swagger UI).
 
@@ -106,6 +152,10 @@ Import `postman/acum-api.postman_collection.json` from this repo.
 
 ## Using the client package directly
 
+```bash
+npm install @acum-api/acum-client
+```
+
 ```ts
 import { createHttpClient, searchWorks, getWork } from "@acum-api/acum-client";
 
@@ -118,7 +168,7 @@ const work = await getWork(http, "1579291");
 console.log(work.iswc, work.versions.length);
 ```
 
-The client has zero Express dependency — drop it into any Node.js project or MCP server.
+Zero Express dependency — drop it into any Node.js project or MCP server.
 
 ---
 
