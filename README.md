@@ -1,5 +1,7 @@
 # acum-api
 
+[![smithery badge](https://smithery.ai/badge/ycalisar/acum-api)](https://smithery.ai/servers/ycalisar/acum-api)
+
 > ⚠️ **UNOFFICIAL — Not affiliated with or endorsed by ACUM (אקו"ם) in any way.**
 > This is an independent open source project. It reverse-engineers and wraps the
 > unauthenticated public search endpoints at [nocs.acum.org.il](https://nocs.acum.org.il/acumsitesearchdb/).
