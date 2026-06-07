@@ -3,12 +3,15 @@ description: Search ACUM (Israel music rights society) database — works, artis
 license: MIT
 homepage: https://github.com/yanirclsr/acum-api
 
-startCommand:
-  type: stdio
-  command: node
-  args:
-    - packages/mcp/dist/index.js
-  env:
+configSchema:
+  type: object
+  properties:
     ACUM_BASE_URL:
+      type: string
       description: Override ACUM base URL (optional, for testing against a proxy)
-      required: false
+  required: []
+
+server:
+  type: http
+  # Replace with your deployed CF Worker URL after running: wrangler deploy
+  url: https://acum-mcp.<your-subdomain>.workers.dev
