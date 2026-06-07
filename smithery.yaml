@@ -14,4 +14,4 @@ configSchema:
 server:
   type: http
   # Replace with your deployed CF Worker URL after running: wrangler deploy
-  url: https://acum-mcp.<your-subdomain>.workers.dev
+  url: https://acum-mcp.ycalisar.workers.dev

@@ -6,9 +6,6 @@ compatibility_flags = []
 [vars]
 # ACUM_BASE_URL = "https://custom-proxy.example.com/acumsitesearchdb"
 
-[[routes]]
-pattern = "/mcp"
-zone_name = ""
 
 [observability]
 enabled = true
