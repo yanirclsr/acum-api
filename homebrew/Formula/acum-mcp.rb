@@ -4,7 +4,7 @@ class AcumMcp < Formula
   # URL and sha256 are updated automatically by the release workflow.
   # To update manually: curl -sL <url> | shasum -a 256
   url "https://registry.npmjs.org/@acum-api/mcp/-/mcp-0.1.0.tgz"
-  sha256 "PLACEHOLDER_SHA256"
+  sha256 "b504a685089de31785ed1bfc6785df5dfb6d1b7ea8209ca6fc4bd66228849d45"
   license "MIT"
 
   depends_on "node"
