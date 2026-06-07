@@ -242,6 +242,76 @@ async function getArtistWorks(args: Record<string, unknown>, baseUrl: string) {
 }
 
 // ── MCP tool definitions ──────────────────────────────────────────────────────
+// ── shared output schema fragments ───────────────────────────────────────────
+
+const CREATOR_SCHEMA = {
+  type: "object",
+  properties: {
+    ipBaseNumber: { type: "string", description: "ACUM IP base number" },
+    nameHebrew: { type: "string", description: "Name in Hebrew" },
+    nameEnglish: { type: "string", description: "Name in English" },
+    roleCode: { type: "string", description: "Role code (C, A, CA, AR, AT, E, SE, CO, PA)" },
+    protectionStatus: { type: "string", description: "Protection status (1=protected, 2=unspecified, 3=public domain)" },
+  },
+  required: ["ipBaseNumber", "nameHebrew"],
+};
+
+const WORK_SCHEMA = {
+  type: "object",
+  properties: {
+    id: { type: "string", description: "ACUM work ID" },
+    versionId: { type: "string", description: "Version ID" },
+    workNumber: { type: "string", description: "Work number" },
+    versionNumber: { type: "string", description: "Version number" },
+    titleHebrew: { type: "string", description: "Title in Hebrew" },
+    titleEnglish: { type: "string", description: "Title in English" },
+    isForeign: { type: "boolean", description: "Whether the work is foreign" },
+    pool: { type: "string", enum: ["local", "foreign"], description: "Rights pool" },
+    category: { type: "string", enum: ["musical", "literature", "medley", "translated"], description: "Work category" },
+    registrationDate: { type: "string", description: "Registration date" },
+    publicationDate: { type: "string", description: "Publication date" },
+    composers: { type: "array", items: { type: "object" }, description: "Composers" },
+    authors: { type: "array", items: { type: "object" }, description: "Authors/lyricists" },
+    arrangers: { type: "array", items: { type: "object" }, description: "Arrangers" },
+    publishers: { type: "array", items: { type: "object" }, description: "Publishers" },
+    performer: { type: "object", description: "Primary performer" },
+    iswc: { type: "string", description: "ISWC code" },
+    isrc: { type: "string", description: "ISRC code" },
+    duration: { type: "string", description: "Duration" },
+    versionCount: { type: "number", description: "Number of versions" },
+    acumUrl: { type: "string", description: "Link to work on ACUM website" },
+  },
+  required: ["id", "workNumber", "titleHebrew", "composers", "authors", "pool", "category"],
+};
+
+const SEARCH_WORKS_OUTPUT = {
+  type: "object",
+  properties: {
+    total: { type: "number", description: "Total matching works" },
+    page: { type: "number", description: "Current page" },
+    limit: { type: "number", description: "Results per page" },
+    results: { type: "array", items: WORK_SCHEMA, description: "Works on this page" },
+  },
+  required: ["total", "page", "limit", "results"],
+};
+
+const ARTIST_SCHEMA = {
+  type: "object",
+  properties: {
+    ipBaseNumber: { type: "string", description: "ACUM IP base number" },
+    nameHebrew: { type: "string", description: "Name in Hebrew" },
+    nameEnglish: { type: "string", description: "Name in English" },
+    workCount: { type: "number", description: "Number of registered works" },
+    versionCount: { type: "number", description: "Number of registered versions" },
+    profession: { type: "string", enum: ["composer", "author", "composer_author", "publisher", "other"], description: "Primary profession" },
+    joinYear: { type: "string", description: "Year joined ACUM" },
+    ipnNumber: { type: "string", description: "IPN number" },
+    caeNumber: { type: "string", description: "CAE/IPI number" },
+  },
+  required: ["ipBaseNumber", "nameHebrew", "workCount", "versionCount", "profession"],
+};
+
+// ── MCP tool definitions ──────────────────────────────────────────────────────
 
 const TOOLS = [
   {
@@ -259,6 +329,7 @@ const TOOLS = [
       },
       required: ["q"],
     },
+    outputSchema: SEARCH_WORKS_OUTPUT,
   },
   {
     name: "get_work",
@@ -267,6 +338,14 @@ const TOOLS = [
       type: "object",
       properties: { workId: { type: "string", description: "ACUM work ID (e.g. 1579291)" } },
       required: ["workId"],
+    },
+    outputSchema: {
+      type: "object",
+      properties: {
+        ...WORK_SCHEMA.properties,
+        versions: { type: "array", items: WORK_SCHEMA, description: "All versions of this work" },
+      },
+      required: ["id", "workNumber", "titleHebrew", "composers", "authors", "pool", "category"],
     },
   },
   {
@@ -280,6 +359,7 @@ const TOOLS = [
       },
       required: ["workId", "versionId"],
     },
+    outputSchema: WORK_SCHEMA,
   },
   {
     name: "search_artists",
@@ -294,6 +374,16 @@ const TOOLS = [
       },
       required: ["q"],
     },
+    outputSchema: {
+      type: "object",
+      properties: {
+        total: { type: "number", description: "Total matching artists" },
+        page: { type: "number", description: "Current page" },
+        limit: { type: "number", description: "Results per page" },
+        results: { type: "array", items: ARTIST_SCHEMA, description: "Artists on this page" },
+      },
+      required: ["total", "page", "limit", "results"],
+    },
   },
   {
     name: "get_artist_works",
@@ -307,6 +397,7 @@ const TOOLS = [
       },
       required: ["creatorIpBaseNumber"],
     },
+    outputSchema: SEARCH_WORKS_OUTPUT,
   },
 ];
 
